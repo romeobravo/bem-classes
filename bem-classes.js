@@ -1,5 +1,9 @@
 'use strict';
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -75,8 +79,6 @@ var BemClasses = function () {
     _classCallCheck(this, BemClasses);
 
     this.classes = [];
-    // this.base = args[0]
-    // this.classes.push(this.base)
 
     for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
@@ -99,8 +101,18 @@ var BemClasses = function () {
       return this.classes;
     }
   }, {
+    key: 'element',
+    value: function element() {
+      return this.e.apply(this, arguments);
+    }
+  }, {
     key: 'elem',
     value: function elem() {
+      return this.e.apply(this, arguments);
+    }
+  }, {
+    key: 'e',
+    value: function e() {
       for (var _len2 = arguments.length, args = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
         args[_key2] = arguments[_key2];
       }
@@ -112,6 +124,11 @@ var BemClasses = function () {
     key: 'base',
     get: function get() {
       return this.classes[0] || '';
+    }
+  }, {
+    key: 'string',
+    get: function get() {
+      return this.s;
     }
   }, {
     key: 's',
@@ -132,3 +149,4 @@ function createInstance() {
 }
 
 module.exports = createInstance;
+exports.default = createInstance;

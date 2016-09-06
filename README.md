@@ -14,7 +14,7 @@ You can use any variable name you like.
 var classes = require('bem-classes')
 import classes from 'bem-classes'
 ```
-You can also grab the index.js
+You can also grab the bem-classes.js file from the repository.
 
 ## Standard class strings
 Pass the arguments to the imported function and call `.s` to return the class string. You can pass strings or key-value pairs as arguments. The key of a key-value pair only gets added as a class if the value is truthy.
@@ -46,13 +46,13 @@ classes('block', { $modifier: true }).s
 classes('block__element', '$modifier').s
   // => 'block__element block__element--modifier'  
 ```
-You can extend the returned object with the elem method. This can be useful for building a React class as a block with the elements inside.
+You can extend the returned object with the `.e()` or `.element()` method. This can be useful for building a React class as a block with the elements inside.
 
 ```js
 const blockClasses = classes('block', { $modifier: true })
 blockClasses.s
 // => 'block block--modifier'
-blockClasses.elem('element', { $modifier: true). }s
+blockClasses.e('element', { $modifier: true). }).s
 // => 'block__element block__element--modifier'
 ```
 
