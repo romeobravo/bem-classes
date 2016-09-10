@@ -17,7 +17,7 @@ import classes from 'bem-classes'
 You can also grab the bem-classes.js file from the repository.
 
 ## Standard class strings
-Pass the arguments to the imported function and call `.s` to return the class string. You can pass strings or key-value pairs as arguments. The key of a key-value pair only gets added as a class if the value is truthy.
+Pass the arguments to the imported function and call `.s` or `.string` to return the class string. You can pass strings or key-value pairs as arguments. The key of a key-value pair only gets added as a class if the value is truthy.
 ```js
 classes('block').s
   // => 'block'

@@ -96,6 +96,11 @@ var BemClasses = function () {
   }
 
   _createClass(BemClasses, [{
+    key: 'toString',
+    value: function toString() {
+      return this.s;
+    }
+  }, {
     key: Symbol.iterator,
     value: function value() {
       return this.classes;
@@ -124,11 +129,6 @@ var BemClasses = function () {
     key: 'base',
     get: function get() {
       return this.classes[0] || '';
-    }
-  }, {
-    key: 'string',
-    get: function get() {
-      return this.s;
     }
   }, {
     key: 's',

@@ -9,6 +9,10 @@ describe('BEM Classes', () => {
     it('concatenates classes', () => {
       expect(cx('block', 'column').s).toBe('block column')
     })
+
+    it('converts to string when expected', () => {
+      expect(`${cx('block')}`).toBe('block')
+    })
   })
 
   describe('with key-value objects', () => {
