@@ -41,6 +41,7 @@ describe('BEM Classes', () => {
     it('can add modifier class with $ prefix in key name', () => {
       expect(cx('block', { $modifier: true }).s).toBe('block block--modifier')
     })
+
   })
 
   describe('with elements', () => {
@@ -49,6 +50,16 @@ describe('BEM Classes', () => {
       expect(blockClasses.s).toBe('block block--modifier')
       var elementClasses = blockClasses.e('element', { $modifier: true })
       expect(elementClasses.s).toBe('block__element block__element--modifier')
+    })
+
+    it('can extend base and add more classes', () => {
+      var block = cx('block')
+      var element = block.e('element', {
+        $modifier: true,
+        extraClass: true
+      })
+      expect(`${block}`).toBe('block')
+      expect(`${element}`).toBe('block__element block__element--modifier extraClass')
     })
   })
 })
