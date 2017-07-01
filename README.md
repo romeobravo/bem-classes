@@ -1,5 +1,16 @@
 # bem-classes
-Easy (BEM) classes for in your javascript application.
+Fast and powerful classnames utility for in your javascript application.
+Easy to use and fast to type interface for creating BEM classnames in your client-side applications.
+
+```js
+const block = bem('block', { $big: truthy })
+// 'block block--big'
+const element = block('element', {
+  $modifier: truthy,
+  extraClass: true
+})
+// 'block__element block__element--modifier extraClass'
+```
 
 # Install
 ```bash
@@ -11,69 +22,77 @@ npm install bem-classes
 ## Require
 You can use any variable name you like.
 ```js
-var classes = require('bem-classes')
-import classes from 'bem-classes'
+import bem from 'bem-classes'
+var bem = require('bem-classes')
 ```
 You can also grab the bem-classes.js file from the repository.
 
 ## Standard class strings
-Pass the arguments to the imported function and it returns a BemClasses instance.
+Pass the arguments to the imported function and it returns a classes facotry.
 This instance implements the toString method which will return the class string when a string is expected.
-You can also call `.s` or `.string` explicitly to return the class string.
+You can also call `.toString()` explicitly to return the class string.
 ```js
-classes('block')
-  // => BemClasses { classes: [ 'block' ] }
-classes('block').string
+bem('block')
+  // => { [Function: factory] toString: [Function] }
+bem('block').toString()
   // => 'block'
-`${classes('block')}`
+`${bem('block')}`
   // => 'block'
 ```
 
-You can pass strings or key-value pairs as arguments. The key of a key-value pair only gets added as a class if the value is truthy.
+You can pass strings or key-value pairs as arguments. The key of a key-value pair only gets added as a class if the value is truthy. You can add as many arguments as you like.
 ```js
-`${classes('block', 'column')}`
+`${bem('block', 'column')}`
   // => 'block column'
-`${classes('block', { column: true })}`
+`${bem('block', { column: true })}`
   // => 'block column'
-`${classes('block', { column: false })}`
-  // => 'block'      
+`${bem('block', { column: false })}`
+  // => 'block'
+
+`${bem('block', { column: false }, 'class1 class2 class3')}`
+  // => 'block class1 class2 class3'
+`${bem('block', { column: false }, 'class1', 'class2', 'class3')}`
+  // => 'block class1 class2 class3'
 ```
 
 ## BEM class strings
 The first valid class becomes the block class.
-Use `_` as a prefix for an element and `-` or `$` for a modifier.
+Use the prefix `-` or `$` for a modifier.
 ```js
-`${classes('block')}`
+`${bem('block')}`
   // => 'block'
-`${classes('block', '-modifier')}`
+`${bem('block', '-modifier')}`
   // => 'block block--modifier'
-`${classes('block', '$modifier')}`
+`${bem('block', '$modifier')}`
   // => 'block block--modifier'
-`${classes('block', { '-modifier': true })}`
+`${bem('block', { '-modifier': true })}`
   // => 'block block--modifier'
-`${classes('block', { $modifier: true })}`
+`${bem('block', { $modifier: true })}`
   // => 'block block--modifier'
-`${classes('block__element', '$modifier')}`
-  // => 'block__element block__element--modifier'  
+`${bem('block__element', '$modifier')}`
+  // => 'block__element block__element--modifier'
 ```
-You can extend the returned object with the `.e()` or `.element()` method. This can be useful for building a React class as a block with the elements inside.
+You can extend the returned object by calling the block. This can be useful for building a React class as a block with the elements inside.
 
 ```js
-const blockClasses = classes('block', { $modifier: true })
-`${blockClasses}`
+const block = bem('block', { $modifier: true })
+`${block}`
 // => 'block block--modifier'
-`${blockClasses.e('element', { $modifier: true })}`
+`${block('element', { $modifier: true })}`
 // => 'block__element block__element--modifier'
+
+const element = bem('block')('element')
+// => 'block__element'
 ```
 
 ## React example
 An example in react showing the power and flexibility of bem-classes
 ```js
-import cx from 'bem-classes'
+import bem from 'bem-classes'
 
 const BemExample = (props) => {
-  const block = cx('block')
-  const element = block.e('element', {
+  const block = bem('block')
+  const element = block('element', {
     $modifier: props.thisPropIsTruthy,
     extraClass: true
   })
@@ -94,6 +113,7 @@ const BemExample = (props) => {
 # Test
 ```
 npm test
+npm run ci
 ```
 
 # Build
@@ -104,4 +124,5 @@ npm run build
 # Develop (watch and rebuild)
 ```
 npm run watch
+npm test
 ```

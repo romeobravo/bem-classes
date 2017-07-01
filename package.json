@@ -1,12 +1,13 @@
 {
   "name": "bem-classes",
-  "version": "1.1.1",
+  "version": "2.0.0",
   "description": "Easy BEM classes",
-  "main": "bem-classes.js",
+  "main": "bem.js",
   "scripts": {
-    "test": "jasmine",
-    "build": "babel lib/bem-classes.js -o bem-classes.js",
-    "watch": "babel lib/bem-classes.js -w -o bem-classes.js"
+    "build": "webpack",
+    "watch": "webpack --watch",
+    "ci": "jest",
+    "test": "jest --watch"
   },
   "repository": {
     "type": "git",
@@ -15,7 +16,9 @@
   "keywords": [
     "BEM",
     "Classes",
-    "React"
+    "ClassNames",
+    "React",
+    "Vue"
   ],
   "author": "Ruben Buitelaar <rubenbuitelaar@gmail.com>",
   "license": "ISC",
@@ -25,7 +28,11 @@
   "homepage": "https://github.com/romeobravo/bem-classes#readme",
   "devDependencies": {
     "babel-preset-es2015": "^6.14.0",
-    "babelify": "^7.3.0",
-    "jasmine": "2.4.0"
+    "babelify": "^7.3.0"
+  },
+  "dependencies": {
+    "babel-loader": "^7.1.1",
+    "jest": "^20.0.4",
+    "webpack": "^3.0.0"
   }
 }
